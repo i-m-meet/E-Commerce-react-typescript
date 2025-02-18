@@ -76,14 +76,20 @@ const Sidebar = () => {
         <div className="mb-5">
           <div className="text-xl font-semibold mb-3">Keywords</div>
           <div>
-            {keywords.map((keyword, index) => (<button key={index} className="block mb-2 px-4 py-2 w-full text-left border rounded hover:bg-gray-200">
+            {keywords.map((keyword, index) => (
+              <button
+                key={index}
+                className="block mb-2 px-4 py-2 w-full text-left border rounded hover:bg-gray-200"
+              >
                 {keyword.toUpperCase()}
-            </button>))}
+              </button>
+            ))}
           </div>
         </div>
 
-                <button className="w-full mb-[4rem] py-2 bg-black text-white rounded mt-5">Reset Filters</button>
-
+        <button className="w-full mb-[4rem] py-2 bg-black text-white rounded mt-5">
+          Reset Filters
+        </button>
       </section>
     </div>
   );
