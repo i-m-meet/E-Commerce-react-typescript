@@ -52,8 +52,8 @@ const Sidebar = () => {
   const handleResetBtn = () => {
     setSearchQuery("");
     setSelectedCategory("");
-    setMinPrice(0);
-    setMaxPrice(0);
+    setMinPrice(undefined);
+    setMaxPrice(undefined);
     setKeyword("");
   };
 
@@ -88,14 +88,14 @@ const Sidebar = () => {
             type="text"
             className="border-2 mr-2 px-5 py-3 mb-3 w-full"
             placeholder="Min"
-            value={minPrice ??0}
+            value={minPrice ??""}
             onChange={handleMinPriceChange}
           />
           <input
             type="text"
             className="border-2 mr-2 px-5 py-3 mb-3 w-full"
             placeholder="Max"
-            value={maxPrice ?? 0}
+            value={maxPrice ?? ""}
             onChange={handleMaxPriceChange}
           />
         </div>
