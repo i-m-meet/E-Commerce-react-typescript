@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useFilter } from "./FilterContext";
+import BookCard from "./BookCard";
 
 const MainContent = () => {
   const { searchQuery, selectedCategory, minPrice, maxPrice, keyword } =
@@ -8,7 +9,7 @@ const MainContent = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [filter, setFilter] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [dropdownOpen, setDropdownOpen] = useState(true);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const itemsPerPage = 12;
 
   useEffect(() => {
@@ -48,21 +49,22 @@ const MainContent = () => {
       );
     }
 
-    switch(filter){
+    switch (filter) {
       case "expensive":
-        return filteredProducts.sort((a,b) => b.price - a.price)
+        return filteredProducts.sort((a, b) => b.price - a.price);
         break;
       case "cheap":
-        return filteredProducts.sort((a,b) => a.price - b.price)
+        return filteredProducts.sort((a, b) => a.price - b.price);
         break;
       case "popular":
-        return filteredProducts.sort((a,b) => b.rating - a.rating)
+        return filteredProducts.sort((a, b) => b.rating - a.rating);
         break;
-        default: return filteredProducts
+      default:
+        return filteredProducts;
     }
   };
   const filteredProducts = getFilteredProducts();
-  console.log(filteredProducts)
+  console.log(filteredProducts);
 
   return (
     <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
@@ -102,9 +104,18 @@ const MainContent = () => {
           </div>
         </div>
 
-        {/* product cards */}
-
-        <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 gap-5"></div>
+        <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 gap-5">
+          {/* product cards */}
+          {filteredProducts.map((product) => (
+            <BookCard
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              image={product.thumbnail}
+              price={product.price}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
