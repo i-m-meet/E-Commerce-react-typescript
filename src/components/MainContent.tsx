@@ -17,9 +17,6 @@ const MainContent = () => {
     if (keyword) {
       url = `https://dummyjson.com/products/search?q=${keyword}`;
     }
-    // const response = fetch(url)
-    // const data = response.Json()
-    // console.log(data)
     fetch(url)
       .then((res) => res.json())
       .then((data) => setProducts(data.products))
@@ -64,7 +61,7 @@ const MainContent = () => {
     }
   };
   const filteredProducts = getFilteredProducts();
-  console.log(filteredProducts);
+  // console.log(filteredProducts);
 
   const totalProducts = 100;
   const totalPages = Math.ceil(totalProducts / itemsPerPage);
